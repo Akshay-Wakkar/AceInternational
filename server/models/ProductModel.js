@@ -1,7 +1,6 @@
 const { productData } = require("./schemas/Product");
 
 exports.saveProduct = async function (data) {
-  console.log(data, "d");
   var productSave;
   var obj = {
     productName: data.productName,

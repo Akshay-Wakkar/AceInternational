@@ -48,12 +48,9 @@ function AddProductForm({ setFormPop }) {
       formData[field.name] = field.value;
     });
 
-    console.log(formData, "form");
-
     const productData = await postRequest(url, formData);
 
     if (productData.value) {
-      console.log(productData);
       toast.success(productData.data.message);
       dispatch(addToList(productData.data.data));
       setFormPop(false);
@@ -117,7 +114,7 @@ function AddProductForm({ setFormPop }) {
           </div>
           <div className="grid grid-cols-2 gap-2 w-full">
             <div className="my-2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label className="block mb-2 text-sm font-medium text-gray-900 ">
                 Gross Price ($)
               </label>
               <input
@@ -134,7 +131,7 @@ function AddProductForm({ setFormPop }) {
               />
             </div>
             <div className="my-2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label className="block mb-2 text-sm font-medium text-gray-900 ">
                 Vat (%)
               </label>
               <DynamicSelect
@@ -150,7 +147,7 @@ function AddProductForm({ setFormPop }) {
             </div>
 
             <div className="my-2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label className="block mb-2 text-sm font-medium text-gray-900 ">
                 Quantity
               </label>
               <input
@@ -166,7 +163,7 @@ function AddProductForm({ setFormPop }) {
             </div>
 
             <div className="my-2">
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <label className="block mb-2 text-sm font-medium text-gray-900 ">
                 Net Price ($)
               </label>
               <input
