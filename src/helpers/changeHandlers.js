@@ -6,6 +6,15 @@ export const handleChangeImage = (e) => {
         value: false,
         message: "File too large. Max limit 3 mb",
       };
+    } else if (
+      e.target.files[0].type !== "image/jpg" &&
+      e.target.files[0].type !== "image/jpeg" &&
+      e.target.files[0].type !== "image/png"
+    ) {
+      return {
+        value: false,
+        message: "Unsupported File Format!",
+      };
     } else {
       return {
         value: true,

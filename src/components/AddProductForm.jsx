@@ -19,7 +19,8 @@ function AddProductForm({ setFormPop }) {
   const [net, setNet] = useState(0);
 
   function calculateVat(value) {
-    return value - vat / 100;
+    let vatvalue = (value * vat) / 100;
+    return (value - vatvalue).toFixed(2);
   }
   useEffect(() => {
     if (document.getElementById("grossval").value) {
@@ -34,6 +35,7 @@ function AddProductForm({ setFormPop }) {
     setLoading(true);
     var url = "products";
     if (!file.raw) {
+      setLoading(false);
       return toast.error("No image uploaded!");
     }
 
@@ -106,7 +108,7 @@ function AddProductForm({ setFormPop }) {
                   }
                 }}
                 id="dropzone-file"
-                accept="image/*"
+                accept="image/png, image/jpeg"
                 type="file"
                 className="hidden"
               />
@@ -121,10 +123,15 @@ function AddProductForm({ setFormPop }) {
                 id="grossval"
                 type="number"
                 name="grossPrice"
-                onInput={(e) => (e.target.value = Math.abs(e.target.value))}
-                onChange={(e) =>
-                  setNet(calculateVat(parseFloat(e.target.value)))
+                onInput={(e) =>
+                  e.target.value > 0
+                    ? null
+                    : (e.target.value = Math.abs(e.target.value))
                 }
+                onChange={(e) =>
+                  setNet(calculateVat(parseFloat(Math.abs(e.target.value))))
+                }
+                step="any"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 outline-none"
                 placeholder="Gross Price"
                 required
